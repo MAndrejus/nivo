@@ -1,0 +1,15 @@
+export const text = {
+  title: 'Retirement Fund',
+  subtitle1: 'Your investment strategy delivers an annualized pretax return of ',
+  subtitle2: ' since inception, with a maximum drawdown of ',
+  'details.title': 'Asset Classes',
+  'label.cash': 'Cash',
+  'label.us.equity': 'U.S. Equity',
+  'label.international.equity': 'International Equity',
+  'label.us.bonds': 'US Bonds',
+  'label.international.bonds': 'International Bonds',
+  'label.other': 'Other',
+  error: 'Error loading chart',
+  'value.undefined': 'Undefined',
+  'no-data': 'No Assets to Display',
+};

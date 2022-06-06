@@ -1,0 +1,33 @@
+@import 'src/styles/components-settings';
+
+.styleguide-fonts {
+  h2,
+  h4 {
+    margin: 0.25em 0;
+  }
+}
+
+.styleguide-fonts-font {
+  margin: 10px 10px 40px;
+}
+
+.styleguide-fonts-variable {
+  color: #666;
+  font-family: monospace;
+}
+
+.styleguide-fonts-weight {
+  margin: 10px 0 20px 20px;
+  padding: 5px;
+
+  &:first-child {
+    padding-top: 0;
+  }
+}
+
+.styleguide-fonts-symbols {
+  background: $color-white;
+  color: $color-grey-1;
+  margin-top: 10px;
+  padding: 10px;
+}

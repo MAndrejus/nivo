@@ -1,0 +1,166 @@
+@mixin vertical-align($block: inline-block, $align: middle) {
+  display: $block;
+  vertical-align: $align;
+}
+
+// removes space around inline-block elements
+@mixin remove-whitespace($apply-to: none, $set-size: 12px) {
+  @if ($apply-to == none) {
+    font-size: 0;
+  } @else if ($apply-to == all) {
+    font-size: 0;
+
+    > * {
+      font-size: $set-size;
+    }
+  } @else {
+    font-size: 0;
+
+    #{$apply-to} {
+      font-size: $set-size;
+    }
+  }
+}
+
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: '';
+    display: table;
+    height: 0;
+  }
+}
+
+@mixin hidden {
+  display: none;
+  visibility: hidden;
+}
+
+@mixin visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+
+  &.focusable {
+    &:focus,
+    &:active {
+      clip: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      position: static;
+      width: auto;
+    }
+  }
+}
+
+@mixin table-base {
+  border: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  table-layout: fixed;
+  vertical-align: middle;
+  width: 100%;
+}
+
+@mixin reset-list-style {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin ellipsis($width: 100%, $display: inline-block, $white-space: nowrap) {
+  display: $display;
+  max-width: $width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: $white-space;
+  word-wrap: normal;
+}
+
+@mixin multi-line-ellipsis($lines) {
+  // supported in all major browsers even the ones that are not webkit
+  // stylelint-disable-next-line property-no-vendor-prefix
+  -webkit-box-orient: vertical;
+  // stylelint-disable-next-line value-no-vendor-prefix
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  overflow: hidden;
+}
+
+@mixin position-translate-center {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin break-word {
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  word-wrap: break-word;
+}
+
+@mixin remove-focus-outline {
+  &:focus {
+    outline: 0;
+
+    &:-moz-focusring {
+      outline: 0;
+    }
+  }
+}
+
+@mixin heading {
+  border-bottom: 1px solid $color-grey-4;
+  border-bottom: 1px solid rgba(177, 177, 177, 0.29);
+  color: $color-grey-1;
+  font-size: 15px;
+  font-weight: $font-weight-semi-bold;
+  letter-spacing: 0.75px;
+  margin: 0;
+  padding-bottom: 9px;
+  text-transform: uppercase;
+  width: 100%;
+
+  &--with-margin {
+    margin-top: 30px;
+  }
+}
+
+@mixin regular-text {
+  color: $color-grey-1;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+@mixin regular-text-secondary($color: $color-grey-1) {
+  color: $color;
+  font-size: 16px;
+  line-height: 22px;
+
+  @include breakpoint-to(desktop) {
+    font-size: 14px;
+    line-height: 19px;
+  }
+}
+
+@mixin dashboard-header {
+  @include regular-text;
+
+  font-size: 16px;
+  font-weight: $font-weight-semi-bold;
+  letter-spacing: 2px;
+  line-height: 22px;
+  text-transform: uppercase;
+}

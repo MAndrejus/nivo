@@ -1,0 +1,59 @@
+$_mobile-landscape-width: $breakpoint-mobile-landscape;
+$_tablet-width: $breakpoint-tablet;
+$_desktop-width: $breakpoint-desktop;
+$_large-desktop-width: $breakpoint-large-desktop;
+$_layout-width: $breakpoint-layout;
+
+@function get-screen-width($point) {
+  $width: 1;
+
+  @if $point == mobile-landscape {
+    $width: $_mobile-landscape-width;
+  } @else if $point == layout {
+    $width: $_layout-width;
+  } @else if $point == tablet {
+    $width: $_tablet-width;
+  } @else if $point == desktop {
+    $width: $_desktop-width;
+  } @else if $point == large-desktop {
+    $width: $_large-desktop-width;
+  }
+
+  @return $width;
+}
+
+@mixin breakpoint-from($point) {
+  @media (min-width: get-screen-width($point)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-to($point) {
+  @media (max-width: get-screen-width($point) - 1) {
+    @content;
+  }
+}
+
+@mixin breakpoint-only($point) {
+  @if $point == mobile {
+    @media (max-width: $_mobile-landscape-width - 1) {
+      @content;
+    }
+  } @else if $point == mobile-landscape {
+    @media (min-width: $_mobile-landscape-width) and (max-width: $_tablet-width - 1) {
+      @content;
+    }
+  } @else if $point == tablet {
+    @media (min-width: $_tablet-width) and (max-width: $_desktop-width - 1) {
+      @content;
+    }
+  } @else if $point == desktop {
+    @media (min-width: $_desktop-width) and (max-width: $_large-desktop-width - 1) {
+      @content;
+    }
+  } @else if $point == large-desktop {
+    @media (min-width: $_large-desktop-width) {
+      @content;
+    }
+  }
+}

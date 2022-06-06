@@ -1,0 +1,178 @@
+@import 'src/styles/components-settings';
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+
+  &--loading {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  @include breakpoint-to(mobile-landscape) {
+    padding-right: 0;
+  }
+}
+
+.graph {
+  height: 180px;
+  margin-left: 0;
+  margin-right: 50px;
+  position: relative;
+  width: 30%;
+
+  .no-data {
+    @include regular-text;
+
+    font-weight: $font-weight-semi-bold;
+    left: 22%;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56%;
+  }
+
+  .graph-label {
+    color: $color-grey-1;
+    font-size: 18px;
+    font-weight: 500;
+    left: 50%;
+    line-height: 24px;
+    position: absolute;
+    text-align: center;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+
+    @include breakpoint-to(mobile-landscape) {
+      font-size: 14px;
+      line-height: 20px;
+      top: 40%;
+      width: 110px;
+    }
+  }
+
+  @include breakpoint-to(mobile-landscape) {
+    height: 180px;
+    margin: 0;
+    width: 100%;
+  }
+}
+
+.details {
+  box-sizing: border-box;
+  flex: 1;
+
+  .list {
+    padding: 0;
+  }
+
+  .row {
+    align-items: center;
+    color: $color-grey-1;
+    display: flex;
+    font-size: 15px;
+    line-height: 20px;
+    margin: 8px 0;
+  }
+
+  .label {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .value {
+    color: $color-grey-1;
+    font-size: 14px;
+    font-weight: 700;
+    margin-left: auto;
+    opacity: 0.6;
+
+    @include breakpoint-to(mobile-landscape) {
+      font-size: 12px;
+      opacity: 0.6;
+    }
+  }
+
+  .dot {
+    background: #000;
+    border-radius: 50%;
+    height: 8px;
+    margin-right: 18px;
+    width: 8px;
+  }
+
+  @include breakpoint-to(mobile-landscape) {
+    margin: 30px 0 0;
+    padding: 0 12px;
+    width: 100%;
+  }
+}
+
+.details-title {
+  @include heading;
+
+  display: flex;
+  justify-content: space-between;
+
+  .total {
+    font-weight: 400;
+
+    @include breakpoint-to(mobile-landscape) {
+      font-weight: 600;
+    }
+  }
+}
+
+.chart-in-column {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: unset;
+
+  .graph {
+    height: 60px;
+    margin: 0;
+    width: 60px;
+  }
+
+  .details {
+    margin-top: 20px;
+    max-width: 240px;
+
+    .list {
+      margin: 0;
+    }
+
+    .row {
+      margin: 2px 0 0;
+    }
+
+    .dot {
+      margin-right: 7px;
+    }
+
+    .label,
+    .value {
+      @include regular-text;
+
+      font-weight: 500;
+      line-height: 20px;
+
+      @include breakpoint-to(large-desktop) {
+        font-size: 12px;
+      }
+    }
+
+    .value {
+      color: #3d4042;
+    }
+
+    .value--bold {
+      font-weight: 700;
+    }
+  }
+}

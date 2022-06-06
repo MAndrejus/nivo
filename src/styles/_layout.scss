@@ -1,0 +1,162 @@
+// stylelint-disable declaration-no-important, selector-max-id, selector-no-qualifying-type, max-nesting-depth, selector-max-compound-selectors
+body {
+  $_expected-footer-responsive-height: 146px;
+
+  background: $color-grey-4;
+  float: left;
+  margin: 0 !important;
+  min-height: 100vh;
+  padding: 0 0 $page-footer-height 0;
+  position: relative;
+  width: 100%;
+
+  #mobile {
+    position: relative;
+  }
+
+  .bodyContainer {
+    margin: 0 auto !important;
+
+    // legacy pages support
+    &.bodyPadding {
+      padding: 20px;
+    }
+  }
+
+  @media all and (max-width: $breakpoint-layout) {
+    padding: 0 0 $_expected-footer-responsive-height !important;
+  }
+
+  &.bodyLandingPage {
+    background: $color-white;
+  }
+
+  &.profilePage {
+    padding: 0 0 $page-footer-height 0 !important;
+
+    .subNav {
+      margin-bottom: (-$page-secondary-navigation-height);
+    }
+
+    .bodyContainer {
+      margin: 0 0 (-$page-footer-height) 0 !important;
+
+      #row-main {
+        align-items: stretch;
+        display: flex;
+
+        #sidebar {
+          min-height: calc(100vh - #{$page-primary-navigation-height});
+          position: relative;
+        }
+
+        #content {
+          padding: 0;
+          width: calc(100% - #{$sidebar-collapsed-width});
+
+          &.sideBarActive {
+            width: calc(100% - #{$sidebar-expanded-width});
+          }
+
+          #contentInner {
+            $_top: $page-padding-top + $page-secondary-navigation-height;
+
+            padding: $_top $page-padding-horizontal 110px !important;
+
+            .page-content {
+              margin: 0 #{-$page-padding-horizontal};
+            }
+
+            .with-header {
+              margin-top: -66px;
+
+              &.representative {
+                margin-top: -20px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media all and (max-width: $breakpoint-layout) {
+      padding: 0 0 $_expected-footer-responsive-height !important;
+
+      .subNav {
+        margin: 0;
+      }
+
+      .bodyContainer {
+        margin: 0 !important;
+
+        #row-main {
+          #content {
+            #contentInner {
+              padding: 20px !important;
+
+              .page-content {
+                margin: 0 -20px;
+              }
+
+              #investment_solutions {
+                margin-top: -20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#supportTab {
+  margin-right: 0;
+  right: $page-padding-horizontal;
+}
+
+#tickerTab {
+  margin-right: 100px;
+}
+
+// legacy support
+.panel {
+  &.panel-background-transparent {
+    background: transparent !important;
+  }
+}
+
+.col-sm-10 {
+  .videoOverview {
+    z-index: 100;
+  }
+}
+
+// stylelint-enable declaration-no-important, selector-max-id, selector-no-qualifying-type, max-nesting-depth, selector-max-compound-selectors
+
+.new-body {
+  background: $color-grey-4;
+
+  .header {
+    align-items: center;
+    background: $color-white;
+    border-bottom: 1px solid $color-grey-3;
+    box-sizing: border-box;
+    display: flex;
+    height: $page-primary-navigation-height;
+    margin: 0;
+    padding: 5px;
+
+    &__logo {
+      border: 0;
+      margin-right: 10px;
+    }
+
+    &__logo-image {
+      height: 50px;
+    }
+  }
+
+  .content {
+    padding: 40px 0;
+  }
+}

@@ -1,0 +1,20 @@
+/* stylelint-disable */
+html:not(.fontawesome-i2svg-active) {
+  i {
+    &.fas,
+    &.far,
+    &.fab {
+      visibility: hidden;
+    }
+  }
+}
+
+#videoContent {
+  background: #000;
+  margin-top: 20px;
+  max-width: 80%;
+}
+
+.tooltip-secondary-navigation {
+  pointer-events: none;
+}

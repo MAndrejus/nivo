@@ -1,0 +1,20 @@
+// variables, settings, mixins
+// these must not contain any css output
+@import 'components-settings';
+
+// pre-requisite globals
+@import 'fonts';
+@import 'normalize';
+
+// legacy support
+@import 'legacy/global-fixes';
+
+// generic globals
+@import 'global';
+@import 'layout';
+
+// components
+@import 'spinner';
+
+// custom pages
+// @import 'custom-pages/sbc-get-started';

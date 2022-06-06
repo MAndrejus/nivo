@@ -1,0 +1,53 @@
+.styleguide-colors {
+  $this: &;
+
+  flex-wrap: wrap;
+
+  &-title {
+    margin-left: 20px;
+  }
+
+  &-color {
+    display: flex;
+    margin: 10px;
+    max-width: 300px;
+    text-align: center;
+
+    &--light {
+      #{$this}-bubble {
+        border: 1px solid #000;
+      }
+      #{$this}-variable {
+        color: #000;
+      }
+    }
+  }
+
+  &-bubble {
+    align-items: center;
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    height: 70px;
+    justify-content: center;
+    position: relative;
+    width: 150px;
+  }
+
+  &-variable {
+    color: #fff;
+    line-height: 20px;
+  }
+
+  &-variable-color {
+    margin-top: 10px;
+  }
+
+  &-usage {
+    border-bottom: 1px solid #ccc;
+    margin: 0 10px;
+    padding: 5px;
+    text-align: left;
+  }
+}

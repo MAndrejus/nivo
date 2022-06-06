@@ -1,0 +1,70 @@
+// fonts, typography
+$font-family: 'Montserrat', 'Trebuchet MS', 'Helvetica', sans-serif;
+$font-family-table-mono: 'Roboto Mono', monospace;
+$font-family-table-numbers: 'Interstate Mono';
+$font-weight-regular: 400;
+$font-weight-semi-bold: 500;
+$font-weight-bold: 600;
+$font-weight-black: 700;
+
+$font-weight-italic: 400;
+
+// breakpoints (mobile first)
+$breakpoint-minimum-width: 320px; // todo actually apply and test
+$breakpoint-mobile-landscape: 576px;
+$breakpoint-tablet: 768px;
+$breakpoint-layout: 850px;
+$breakpoint-desktop: 992px;
+$breakpoint-large-desktop: 1200px;
+
+// z-index content and lower layers
+$z-below-content: -1; // for background effects
+$z-default: 0; // to contain inner layers
+$z-content: 10; // for anything that is considered in-flow content
+$z-above-content: 20; // for not in-flow content
+
+// z-index higher than content layers
+$z-dropdown: 800; // todo investigate if can be lower to make incremental pattern of 10
+$z-modal: 1100;
+$z-tooltip: 1200;
+
+// page/layout
+$page-primary-navigation-height: 60px;
+$page-primary-navigation-height-mobile: 48px; // on $breakpoint-layout
+$page-secondary-navigation-height: 45px;
+$page-footer-height: 44px;
+$page-padding-top: 20px;
+$page-padding-horizontal: 40px;
+
+$sidebar-collapsed-width: 60px;
+$sidebar-expanded-width: 260px;
+
+// border radius
+$border-radius-small: 2px;
+$border-radius-medium: 3px;
+$border-radius-big: 4px;
+$border-radius-huge: 6px;
+
+$border-radius-input: $border-radius-big; // different than design due to border discrepancy
+
+// transitions
+$transition-duration-default: 0.15s; // backgrounds, colors, local transitions
+$transition-duration-entry: 0.3s; // modals, panels, toggleable content. Also for exit.
+$transition-timing-function-default: ease-in-out;
+$transition-timing-function-entry: ease;
+
+// COMPONENTS
+// table
+$table-border-color: $color-blue-5;
+$table-head-border-color: $color-grey-1;
+$table-background-color: $color-white;
+$table-border-radius: 4px;
+$table-row-spacing-between: 5px;
+
+// tooltip
+$tooltip-shadow: 0 0 8px rgba(222, 222, 222, 0.5);
+
+// dropdown
+$dropdown-menu-item-hover-color: rgba(#406cd6, 0.12);
+
+$upper-layer-box-shadow: 0 2px 9px 0 rgba($color-grey-3, 0.5);
