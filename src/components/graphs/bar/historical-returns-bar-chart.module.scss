@@ -1,0 +1,21 @@
+@import 'components-settings';
+
+.container {
+  box-sizing: border-box;
+}
+
+.rect {
+  fill: transparent;
+}
+
+.value {
+  opacity: 0;
+}
+
+.bar:hover .rect {
+  fill: rgba(203, 211, 216, 0.12);
+}
+
+.bar:hover .value {
+  opacity: 1;
+}
