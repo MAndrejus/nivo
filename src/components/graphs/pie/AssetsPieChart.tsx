@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import { text } from './text';
 import { ResponsivePie } from '@nivo/pie';
 import { Tooltip } from './Tooltip';
-import { colorsPalette } from 'core/colors';
+import { colorsPalette } from '../../../core/colors';
 
 const cx = classNames.bind(styles);
 
@@ -16,7 +16,7 @@ export interface AssetsGraphProps {
 }
 
 export const AssetsPieChart = (props: AssetsGraphProps) => {
-  let { className, data, isColumnView, showNoDataText = true } = props;
+  const { className, data, isColumnView, showNoDataText = true } = props;
 
   // Define witch pie part is currently hovered (used color as we dont have ids on svg paths)
   const [activePart, setActive] = useState<string | number>('');
@@ -38,7 +38,8 @@ export const AssetsPieChart = (props: AssetsGraphProps) => {
 
   const listOfValues = dataWithColors.map((part, i) => {
     // Blur all non hovered values from the list
-    let { value, name, color } = part;
+    let { value } = part;
+    const { name, color } = part;
     value = Math.round(value * 1000) / 10;
     const opacity = activePart && color !== activePart ? 0.35 : 1;
 
@@ -85,11 +86,12 @@ export const AssetsPieChart = (props: AssetsGraphProps) => {
           margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
           innerRadius={0.88}
           padAngle={4}
-          // enableRadialLabels={false}
           cornerRadius={0}
           colors={total ? chartData.map((item) => item.color) : ['#f5f5f5']}
           tooltip={Tooltip}
-          // enableSliceLabels={false}
+          enableArcLabels={false}
+          enableArcLinkLabels={false}
+          animate={false}
         />
       </div>
       <div className={cx('details')}>
