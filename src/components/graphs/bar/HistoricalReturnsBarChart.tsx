@@ -13,23 +13,19 @@ import {
   desktopMargins,
   CHART_HEIGHT,
 } from './constants';
+import { BarDatum, DataProps } from '@nivo/bar/dist/types/types';
 
 const cx = classNames.bind(styles);
 
-export interface Data {
+export interface Data extends BarDatum {
   date: string;
   value: number;
-  range?: number;
 }
 
-export interface Props {
-  data?: Data[];
-}
-
-export const HistoricalReturnsBarChart = (props: Props) => {
+export const HistoricalReturnsBarChart = (props: DataProps<Data>) => {
   const isMobileLandscape = useBreakpointDetector({ to: 'mobile-landscape' });
+  const { data } = props;
 
-  let { data } = props;
   if (!data) return null;
 
   let max = 0;
@@ -57,7 +53,7 @@ export const HistoricalReturnsBarChart = (props: Props) => {
         maxValue={maxValue}
         minValue={minValue}
         data={data}
-        keys={['range', 'value']} // Key position must be this way
+        keys={['value']} // Key position must be this way
         indexBy="date"
         margin={isMobileLandscape ? mobileMargins : desktopMargins}
         padding={0}
@@ -66,7 +62,7 @@ export const HistoricalReturnsBarChart = (props: Props) => {
         colors={[NET_RETURNS_COLOR, NET_LOSSES_COLOR, NET_RANGE_COLOR]}
         axisTop={null}
         axisRight={null}
-        layers={['grid' as any, 'axes', 'bars', 'markers', 'legends', CustomAxes, CustomLegends]}
+        layers={['grid', 'axes', 'bars', 'markers', 'legends', CustomAxes, CustomLegends]}
         theme={{
           axis: {
             ticks: {
@@ -83,8 +79,8 @@ export const HistoricalReturnsBarChart = (props: Props) => {
         }}
         barComponent={(bar) => CustomBar(bar, data?.length)}
         animate={false}
-        motionStiffness={500}
-        motionDamping={15}
+        // motionStiffness={500}
+        // motionDamping={15}
       />
     </div>
   );
