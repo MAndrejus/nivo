@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResponsiveLine, CustomLayer } from '@nivo/line';
+import { ResponsiveLine, CustomLayer, LineSvgProps, CustomLayerProps } from '@nivo/line';
 import { AxisProps } from '@nivo/axes';
 import { addLayers, theme, legends, findMinMaxValues } from './config';
 import {
@@ -19,6 +19,7 @@ import moment from 'moment';
 import { useBreakpointDetector } from 'core/window';
 import { LegendProps } from '@nivo/legends';
 import { NoDataError } from '../../no-data-error';
+import { Scale } from '@nivo/scales';
 
 const cx = classNames.bind(styles);
 
@@ -71,9 +72,9 @@ export interface GraphProps {
 
 export interface GraphData {
   id: string;
-  name?: string;
-  color: string;
   data: Datum[];
+  color: string;
+  name?: string;
 }
 
 export interface Datum {
@@ -97,20 +98,17 @@ export interface ProjectionDatum {
 
 export const LineGraph = (props: GraphProps) => {
   const isMobileLandscape = useBreakpointDetector({ to: 'mobile-landscape' });
-  let {
-    data,
+  const {
     maxLegendLength,
     projectionData,
     withProjectionBreakpoint,
     investmentTarget,
     rangeOfOutcomesLabel,
-    min,
     curve,
     disableLegend,
     verticalAxisPosition = 'left',
     timeInterval,
     ticks = 3,
-    max,
     currentDateLabel,
     units = '$',
     className,
@@ -121,6 +119,7 @@ export const LineGraph = (props: GraphProps) => {
     error,
     errorMessage,
   } = props;
+  let { data, min, max } = props;
 
   if (error) return <NoDataError message={errorMessage} />;
 
@@ -218,7 +217,7 @@ export const LineGraph = (props: GraphProps) => {
         axisBottom={{
           format: '%Y',
           tickValues: `every ${timeInterval || getDefaultTimeInterval()} years`,
-          orient: 'bottom',
+          ticksPosition: 'before',
           renderTick: (tick) => {
             if (data[0]?.data[0]?.x) return XAxisTick(tick, data[0].data[0].x);
             return XAxisTick(tick, data[1].data[0].x);

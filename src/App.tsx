@@ -3,6 +3,13 @@ import './App.css';
 import { AssetsPieChart } from './components/graphs/pie';
 import { Box } from './components/box';
 import { HistoricalReturnsBarChart } from './components/graphs/bar';
+import { LineGraph } from './components/graphs/linear';
+import {
+  compareAdvisorDrawdownData,
+  compareAdvisorGrowthData,
+  graphData,
+  projectionData,
+} from './components/graphs/linear/mocked-data';
 
 const AssetsPieData = [
   { name: 'US Stock', value: 0.665 },
@@ -28,10 +35,42 @@ function App() {
   return (
     <div className="App">
       <Box>
-        <AssetsPieChart data={AssetsPieData} />
+        <LineGraph
+          data={compareAdvisorGrowthData}
+          min={0}
+          tooltip={{ withColors: true }}
+          legendsProps={{ itemsSpacing: 140 }}
+        />
+      </Box>
+      <Box>
+        <LineGraph
+          data={compareAdvisorDrawdownData}
+          tooltip={{ withColors: true, unitsPosition: 'end', valueDecimals: 1 }}
+          legendsProps={{ itemsSpacing: 140 }}
+          max={0}
+          ticks={3}
+          units={'%'}
+        />
+      </Box>
+      <Box>
+        <LineGraph
+          data={graphData}
+          investmentTarget={30000}
+          projectionData={projectionData}
+          withProjectionBreakpoint
+        />
+      </Box>
+      <Box>
+        <LineGraph data={graphData} investmentTarget={30000} />
+      </Box>
+      <Box>
+        <LineGraph data={graphData} />
       </Box>
       <Box>
         <HistoricalReturnsBarChart data={HistoricalReturnsBarData} />
+      </Box>
+      <Box>
+        <AssetsPieChart data={AssetsPieData} />
       </Box>
     </div>
   );

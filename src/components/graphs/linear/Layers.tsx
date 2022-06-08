@@ -22,16 +22,17 @@ const HeadingFormats = {
 
 export type SliceTooltipHeadingFormat = 'date' | 'year';
 
-export const ProjectionLayer = (areaData: ProjectionData): CustomLayer => {
+export const ProjectionLayer = (areaData: ProjectionData) => {
   const { data, color } = areaData;
-  return ({ xScale, yScale }) => {
+
+  const ProjectionLayer = (layer) => {
     const areaGenerator = area<ProjectionDatum>()
       .x((d) => {
         const fullDate = d.x! as string;
-        return xScale(new Date(fullDate));
+        return layer.xScale(new Date(fullDate));
       })
-      .y0((d) => yScale(d.min))
-      .y1((d) => yScale(d.max))
+      .y0((d) => layer.yScale(d.min))
+      .y1((d) => layer.yScale(d.max))
       .curve(curveCardinal);
     return (
       <path
@@ -41,10 +42,12 @@ export const ProjectionLayer = (areaData: ProjectionData): CustomLayer => {
       />
     );
   };
+
+  return ProjectionLayer;
 };
 
 export const ProjectionPointer = (date: string) => {
-  return (layer: CustomLayerProps) => {
+  const ProjectionPointerLayer = (layer) => {
     const { xScale, innerHeight } = layer;
     const x = xScale(new Date(date));
     return (
@@ -71,9 +74,10 @@ export const ProjectionPointer = (date: string) => {
       </g>
     );
   };
+  return ProjectionPointerLayer;
 };
 
-export const SideDots: CustomLayer = (layer: any) => {
+export const SideDots = (layer) => {
   const [leftTooltip, showLeftTooltip] = useState(false);
   const [rightTooltip, showRightTooltip] = useState(false);
   const firstPoint = layer.points[0];
@@ -144,7 +148,7 @@ export const SideDots: CustomLayer = (layer: any) => {
 };
 
 export const InvestmentTarget = (target: number) => {
-  return (layer: CustomLayerProps) => {
+  const InvestmentTargetLayer = (layer) => {
     const y = layer.yScale(target);
     const style = {
       fill: graphColors.text,
@@ -167,6 +171,8 @@ export const InvestmentTarget = (target: number) => {
       </g>
     );
   };
+
+  return InvestmentTargetLayer;
 };
 
 export const CustomLegend = (layer: any) => {
@@ -268,7 +274,7 @@ export const renderTooltip = (tooltipProps: TooltipProps) => {
     dataCount,
   } = tooltipProps;
   const { slice } = data;
-  // @ts-ignore
+
   const tooltipData = slice.points.map((point, i) => {
     return {
       key: point.serieId,
