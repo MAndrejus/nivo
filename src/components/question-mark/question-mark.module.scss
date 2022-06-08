@@ -1,0 +1,34 @@
+@import 'src/styles/components-settings';
+
+.tooltip-trigger-button {
+  background: none;
+  border: 0;
+  display: inline-flex;
+  height: 18px;
+  margin: 0;
+  outline: none;
+  padding: 0 8px;
+  vertical-align: text-top;
+}
+
+.tooltip-trigger-link {
+  background: none;
+  border: 0;
+  color: $color-blue-3;
+  font-size: 12px;
+  line-height: 16px;
+  margin: 0 0 0 8px;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.tooltip-content {
+  font-size: 14px;
+  text-align: left;
+  text-transform: none;
+
+  p {
+    font-size: 14px;
+    font-weight: $font-weight-regular;
+  }
+}

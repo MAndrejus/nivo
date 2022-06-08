@@ -1,0 +1,55 @@
+// todo investigate !important declarations
+// todo investigate global in global
+/* stylelint-disable declaration-no-important */
+@import 'src/styles/components-settings';
+
+.body {
+  box-sizing: border-box;
+  line-height: 1.5;
+  max-height: 50vh;
+  overflow: auto;
+  padding: 0 10px;
+}
+
+:global(.popup-content) {
+  $_max-width-big: 400px;
+  $_max-width-medium: 300px;
+  $_max-width-small: 220px;
+  // popup fits into <`max-width` + (`max-width` * 2)> screen size in worst case scenario, but scrollbar and perhaps some unforeseen tiny details might require a small buffer before changing max-width
+  $_media-buffer: 50px;
+
+  border: $color-grey-3 1px solid !important;
+  border-radius: $border-radius-huge !important;
+  box-shadow: 0 0 8px 0 rgba(222, 222, 222, 0.9) !important;
+  box-sizing: border-box !important;
+  max-width: $_max-width-big;
+  padding: 5px !important;
+  width: max-content !important;
+  z-index: $z-above-content !important;
+
+  :global(.popup-arrow) {
+    $_arrow-size: 20px;
+
+    border: $color-grey-3 1px solid !important;
+    border-left: 0 !important;
+    border-top: 0 !important;
+    box-shadow: 3px 3px 6px 0 rgba(222, 222, 222, 0.4) !important;
+    height: $_arrow-size !important;
+    margin: -10px !important;
+    width: $_arrow-size !important;
+  }
+
+  @media all and (max-width: #{$sidebar-expanded-width + ($page-padding-horizontal * 2) + $_max-width-big + calc($_max-width-big / 2) + $_media-buffer}) {
+    :global(.sideBarActive) & {
+      max-width: $_max-width-medium;
+    }
+  }
+
+  @media all and (max-width: #{$_max-width-big + calc($_max-width-big / 2) + $_media-buffer}) {
+    max-width: $_max-width-medium;
+  }
+
+  @media all and (max-width: #{$_max-width-medium + calc($_max-width-medium / 2) + $_media-buffer}) {
+    max-width: $_max-width-small;
+  }
+}

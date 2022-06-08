@@ -1,0 +1,29 @@
+@import 'src/styles/components-settings';
+
+.question-mark {
+  display: inline-flex;
+  outline: none;
+
+  svg {
+    display: block;
+  }
+
+  &--left {
+    margin-right: 8px;
+  }
+
+  &--right {
+    margin-left: 8px;
+  }
+}
+
+.tooltip-container {
+  font-size: 14px;
+  text-align: left;
+  text-transform: none;
+
+  p {
+    font-size: 14px;
+    font-weight: $font-weight-regular;
+  }
+}

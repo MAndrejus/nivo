@@ -1,0 +1,61 @@
+@import 'src/styles/components-settings';
+
+.graph {
+  height: 360px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.explanation {
+  position: absolute;
+  z-index: 100;
+
+  &--left {
+    left: 85px;
+    top: 42%;
+
+    @include breakpoint-to('large-desktop') {
+      display: none;
+    }
+  }
+
+  &--bottom {
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(80px);
+  }
+}
+
+.tooltip {
+  $this: &;
+
+  margin-bottom: -55px;
+
+  &#{$this}--fixed-height {
+    height: auto;
+    transform: none;
+  }
+
+  @include breakpoint-to(mobile-landscape) {
+    margin-right: 60px;
+    width: 200px;
+  }
+}
+
+.dot-text {
+  color: $color-grey-1;
+  font-size: 14px;
+  line-height: 1.2;
+  margin-top: -2px;
+  width: 140px;
+
+  @include breakpoint-to(mobile-landscape) {
+    margin-right: 0;
+    width: 130px;
+  }
+}
+
+.loader,
+.error {
+  min-height: 400px;
+}

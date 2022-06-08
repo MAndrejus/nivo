@@ -1,0 +1,12 @@
+@import 'src/styles/components-settings';
+
+.container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  .message {
+    font-size: 16px;
+    font-weight: $font-weight-semi-bold;
+  }
+}

@@ -1,0 +1,16 @@
+@import 'src/styles/components-settings';
+
+.icon {
+  &--tooltip-trigger {
+    color: $color-grey-1;
+    fill: $color-yellow;
+  }
+
+  &--success {
+    color: $color-green-1;
+  }
+
+  &--warning {
+    color: $color-red-1;
+  }
+}

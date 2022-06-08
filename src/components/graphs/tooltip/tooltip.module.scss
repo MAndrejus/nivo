@@ -1,0 +1,56 @@
+@import 'src/styles/components-settings';
+
+.tooltip {
+  background: $color-white;
+  border: 1px solid $color-grey-3;
+  border-radius: 1px;
+  height: 50%;
+  margin-top: 0;
+  min-width: 200px;
+  padding: 10px;
+  transform: translate(0, -50%);
+
+  .heading {
+    border-bottom: 1px solid $color-grey-3;
+    color: $color-grey-1;
+    font-size: 12px;
+    font-weight: $font-weight-bold;
+    line-height: 15px;
+    margin: 0;
+    padding-bottom: 5px;
+
+    &--truncate {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+    }
+  }
+
+  .item {
+    display: flex;
+    font-size: 12px;
+    justify-content: space-between;
+    line-height: 26px;
+    margin: 0;
+    padding: 0 7px;
+
+    &--active {
+      background: $color-grey-4;
+    }
+
+    &--bold {
+      font-weight: $font-weight-bold;
+    }
+  }
+}
+
+.transparent {
+  background: rgba($color-white, 0.6);
+
+  .item {
+    &--active {
+      background: rgba($color-grey-4, 0.8);
+    }
+  }
+}

@@ -10,6 +10,7 @@ import {
   graphData,
   projectionData,
 } from './components/graphs/linear/mocked-data';
+import { ScatterPlotGraph } from './components/graphs/scatterplot';
 
 const AssetsPieData = [
   { name: 'US Stock', value: 0.665 },
@@ -34,6 +35,9 @@ const HistoricalReturnsBarData = [
 function App() {
   return (
     <div className="App">
+      <Box>
+        <ScatterPlotGraph />
+      </Box>
       <Box>
         <LineGraph
           data={compareAdvisorGrowthData}

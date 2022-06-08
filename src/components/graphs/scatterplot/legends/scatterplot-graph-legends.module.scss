@@ -1,0 +1,100 @@
+@import 'src/styles/components-settings';
+
+.ScatterPlotGraphLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 15px;
+
+  .legends-group {
+    display: flex;
+    flex-direction: column;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+  .items {
+    display: flex;
+  }
+
+  li {
+    font-weight: $font-weight-semi-bold;
+    line-height: 15px;
+    list-style: none;
+    margin: 5px 0;
+  }
+
+  .items-column {
+    margin-bottom: 0;
+    margin-right: 30px;
+    max-width: 100%;
+    padding: 0;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &__item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .items-icon {
+    margin-right: 9px;
+    overflow: visible;
+  }
+
+  .filters {
+    align-items: center;
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  .link {
+    color: $color-grey-2;
+    white-space: nowrap;
+
+    &--active {
+      color: $color-blue-3;
+      text-decoration: underline;
+    }
+  }
+}
+
+.checkbox {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 6px;
+  height: auto;
+  width: auto;
+
+  &__fake {
+    display: block;
+    height: 24px;
+    left: auto;
+    position: relative;
+    top: auto;
+    width: 24px;
+  }
+
+  &__label {
+    align-self: center;
+    color: $color-grey-1;
+    font-size: 14px;
+    font-weight: $font-weight-semi-bold;
+    position: relative;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    .checkbox__fake {
+      border-color: $color-piechart-blue;
+    }
+  }
+}
