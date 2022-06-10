@@ -21,7 +21,7 @@
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint", "import", "prettier"],
-  "rules": {},
+  "rules": { "react/prop-types": "off" },
   "settings": {
     "react": {
       "version": "detect"

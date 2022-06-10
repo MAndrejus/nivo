@@ -25,6 +25,7 @@ export const Tooltip = (props: Props) => {
   const node = useRef<HTMLDivElement | null>(null);
 
   const style: { [key: string]: string } = {};
+
   if (window.innerWidth <= MOBILE_BREAKPOINT && node?.current?.parentElement) {
     const parent = node.current.parentElement;
     const offsetX = parseFloat(parent.style.transform.split('(')[1].split('px')[0]);

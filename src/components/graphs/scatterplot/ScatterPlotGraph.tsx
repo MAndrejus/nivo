@@ -2,17 +2,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './scatterplot-graph.module.scss';
 import { text } from './text';
-import {
-  ResponsiveScatterPlot,
-  Serie,
-  Datum,
-  CustomSvgLayer,
-  CustomLayerId,
-  Value,
-  Node,
-} from '@nivo/scatterplot';
-// ScatterPlot TS lib has no options to add extra params to data.
-// We use Serie from Line graph to get around this.
+import { ResponsiveScatterPlot, ScatterPlotLayerProps } from '@nivo/scatterplot';
 import {
   XAxisLabels,
   YAxisLabels,
@@ -33,29 +23,19 @@ import { numberWithCommas } from 'core/utils';
 import { Tooltip } from '../tooltip';
 import { useBreakpointDetector } from '../../../core/window';
 import { IconType } from './icons/GraphIcon';
-import { QuestionMark } from '../../question-mark';
+import { QuestionMark, QuestionMarkPopper } from '../../question-mark';
 import { NoDataError } from '../../no-data-error';
+import {
+  ScatterPlotCustomSvgLayer,
+  ScatterPlotDatum,
+  ScatterPlotLayerId,
+  ScatterPlotMouseHandler,
+  ScatterPlotRawSerie,
+} from '@nivo/scatterplot/dist/types/types';
 
 const cx = classNames.bind(styles);
 
-export interface DotNode extends Node {
-  data: {
-    id: string | number;
-    serieId: string;
-    x: Value;
-    formattedX: string | number;
-    y: Value;
-    formattedY: string | number;
-    annualReturns: number;
-    volatility: number;
-    sharpeRatio: number;
-    color?: string;
-    icon?: IconType;
-    link?: string;
-  };
-}
-
-export interface DotData extends Datum {
+export interface DotData extends ScatterPlotDatum {
   annualReturns: number;
   volatility: number;
   sharpeRatio: number;
@@ -64,23 +44,17 @@ export interface DotData extends Datum {
   link?: string;
 }
 
-export interface Data extends Serie {
-  data: DotData[];
-}
-
-export type MouseHandler = (node: DotNode, event: React.MouseEvent<any>) => void;
-
 export interface ScatterPlotGraphProps {
+  data: ScatterPlotRawSerie<DotData>[];
   loading?: boolean;
   error?: boolean;
   errorMessage?: string;
-  data?: Data[];
   axisColors?: string[];
   showQuadrants?: boolean;
   showNodeLabel?: boolean;
-  onMouseClick?: MouseHandler;
-  setSelectedNodeId?: (id: string | null) => void;
-  selectedNodeId?: string | null;
+  onMouseClick?: ScatterPlotMouseHandler<DotData>;
+  setSelectedNodeId?: (id: string | number | null) => void;
+  selectedNodeId?: string | number | null;
   maxYScale?: number;
   minYScale?: number;
   maxXScale?: number;
@@ -104,7 +78,7 @@ export const ScatterPlotGraph = (props: ScatterPlotGraphProps) => {
     errorMessage,
   } = props;
 
-  const [graphNodeId, setGraphNodeId] = useState<string | null>(null);
+  const [graphNodeId, setGraphNodeId] = useState<string | number | null>(null);
 
   const isMobileView = useBreakpointDetector({ to: 'large-desktop' });
   const useLocalNodeId = setSelectedNodeId === undefined || selectedNodeId === undefined;
@@ -144,7 +118,7 @@ export const ScatterPlotGraph = (props: ScatterPlotGraphProps) => {
       : scaleMinValueMultiplier(minXValue, 0.1, xAvg);
   }
 
-  const layers: Array<CustomLayerId | CustomSvgLayer> = [];
+  const layers: (ScatterPlotLayerId | ScatterPlotCustomSvgLayer<DotData>)[] = [];
   layers.push('grid', 'axes');
   if (showQuadrants) {
     layers.push(QuadrantsAxis);
@@ -158,29 +132,28 @@ export const ScatterPlotGraph = (props: ScatterPlotGraphProps) => {
     XAxisLine(props.axisColors),
     YAxisLegend,
     'nodes',
-    renderTooltip(selectedNodeId)
+    renderTooltip(selectedNodeId ? selectedNodeId : graphNodeId)
   );
 
   return (
     <div className={cx('graph')}>
       {startDate && (
-        <QuestionMark
-          on="hover"
-          tooltipPosition="label"
-          text={text['explanation.annualized-returns'](startDate, disclaimerType)}
-          className={cx('explanation', 'explanation--left')}
-        />
+        <>
+          <QuestionMarkPopper
+            trigger={'hover'}
+            text={text['explanation.annualized-returns'](startDate, disclaimerType)}
+            className={cx('explanation', 'explanation--left')}
+          />
+          <QuestionMarkPopper
+            trigger={'hover'}
+            text={text['explanation.volatility'](startDate)}
+            className={cx('explanation', 'explanation--bottom')}
+          />
+        </>
       )}
-      {startDate && (
-        <QuestionMark
-          on="hover"
-          tooltipPosition="label"
-          text={text['explanation.volatility'](startDate)}
-          className={cx('explanation', 'explanation--bottom')}
-        />
-      )}
+
       <ResponsiveScatterPlot
-        data={data as Serie[]}
+        data={data}
         layers={layers}
         margin={margin}
         xScale={{ type: 'linear', min: minXScale, max: maxXScale }}
@@ -210,7 +183,7 @@ export const ScatterPlotGraph = (props: ScatterPlotGraphProps) => {
         nodeSize={15}
         gridXValues={0}
         gridYValues={0}
-        renderNode={(dot) =>
+        nodeComponent={(dot) =>
           NodeRenderer(
             dot,
             maxXScale,
@@ -226,58 +199,69 @@ export const ScatterPlotGraph = (props: ScatterPlotGraphProps) => {
   );
 };
 
-const renderTooltip = (selectedNodeId?: string | null) => (tooltip: any) => {
-  if (selectedNodeId === null) {
-    return null;
-  }
+const renderTooltip = (selectedNodeId?: string | number | null) => {
+  const tooltipLayer = (layer: ScatterPlotLayerProps<DotData>) => {
+    if (selectedNodeId === null) {
+      return null;
+    }
 
-  const node = tooltip.nodes.find((node: any) => node.data.serieId === selectedNodeId);
-  if (!node) {
-    return null;
-  }
+    const node = layer.nodes.find((node) => {
+      return node.serieId === selectedNodeId;
+    });
 
-  const tooltipData = [
-    {
-      key: text['tooltip.annual-returns'],
-      value: numberWithCommas(node.data.annualReturns) + '%',
-    },
-    { key: text['tooltip.volatility'], value: node.data.volatility.toFixed(1) + '%', active: true },
-    { key: text['tooltip.sharpe-ratio'], value: node.data.sharpeRatio.toFixed(1) },
-  ];
-  const tooltipSize = {
-    width: 258,
-    height: 121,
-    topOffset: node.size,
+    if (!node) {
+      return null;
+    }
+
+    const tooltipData = [
+      {
+        key: text['tooltip.annual-returns'],
+        value: numberWithCommas(node.data.annualReturns) + '%',
+      },
+      {
+        key: text['tooltip.volatility'],
+        value: node.data.volatility.toFixed(1) + '%',
+        active: true,
+      },
+      { key: text['tooltip.sharpe-ratio'], value: node.data.sharpeRatio.toFixed(1) },
+    ];
+    const tooltipSize = {
+      width: 258,
+      height: 121,
+      topOffset: node.size,
+    };
+
+    const topPosition = () => {
+      if (node.y + layer.margin.top < tooltipSize.height + tooltipSize.topOffset) {
+        return node.y + tooltipSize.topOffset;
+      }
+      return node.y - tooltipSize.height - tooltipSize.topOffset;
+    };
+
+    const leftPosition = () => {
+      if (node.x + layer.margin.left < tooltipSize.width / 2) {
+        return -layer.margin.left;
+      }
+      if (node.x + tooltipSize.width / 2 > layer.innerWidth) {
+        return layer.innerWidth - tooltipSize.width + layer.margin.right;
+      }
+      return node.x - tooltipSize.width / 2;
+    };
+
+    return (
+      <g transform={`translate(${leftPosition()} ${topPosition()})`}>
+        <foreignObject width={tooltipSize.width} height={tooltipSize.height}>
+          <Tooltip
+            className={cx('tooltip', 'tooltip--fixed-height')}
+            heading={node.serieId}
+            data={tooltipData}
+            transparent={false}
+            truncateHeading
+          />
+        </foreignObject>
+      </g>
+    );
   };
 
-  const topPosition = () => {
-    if (node.y + tooltip.margin.top < tooltipSize.height + tooltipSize.topOffset) {
-      return node.y + tooltipSize.topOffset;
-    }
-    return node.y - tooltipSize.height - tooltipSize.topOffset;
-  };
-
-  const leftPosition = () => {
-    if (node.x + tooltip.margin.left < tooltipSize.width / 2) {
-      return -tooltip.margin.left;
-    }
-    if (node.x + tooltipSize.width / 2 > tooltip.innerWidth) {
-      return tooltip.innerWidth - tooltipSize.width + tooltip.margin.right;
-    }
-    return node.x - tooltipSize.width / 2;
-  };
-
-  return (
-    <g transform={`translate(${leftPosition()} ${topPosition()})`}>
-      <foreignObject width={tooltipSize.width} height={tooltipSize.height}>
-        <Tooltip
-          className={cx('tooltip', 'tooltip--fixed-height')}
-          heading={node.data.serieId}
-          data={tooltipData}
-          transparent={false}
-          truncateHeading
-        />
-      </foreignObject>
-    </g>
-  );
+  return tooltipLayer;
 };

@@ -33,8 +33,8 @@ export interface ScatterPlotGraphLegendProps {
   className?: string;
   style?: CSSProperties;
   nodeGroups: NodeGroup[];
-  selectedNodeId?: string | null;
-  setSelectedNodeId?: (id: string | null) => void;
+  selectedNodeId?: string | number | null;
+  setSelectedNodeId?: (id: string | number | null) => void;
   testId?: string;
 }
 

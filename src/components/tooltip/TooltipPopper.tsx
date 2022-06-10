@@ -33,17 +33,12 @@ export const TooltipPopper: React.FC<TooltipPopperProps> = ({
   arrow = false,
   className,
 }) => {
-  const {
-    getArrowProps,
-    getTooltipProps,
-    setTooltipRef,
-    setTriggerRef,
-    visible,
-  } = usePopperTooltip({
-    trigger,
-    placement,
-    offset,
-  });
+  const { getArrowProps, getTooltipProps, setTooltipRef, setTriggerRef, visible } =
+    usePopperTooltip({
+      trigger,
+      placement,
+      offset,
+    });
 
   const renderTooltip = () => {
     return (

@@ -3,8 +3,6 @@ import React, { ComponentProps } from 'react';
 import Popup from 'reactjs-popup';
 import styles from './tooltip.module.scss';
 
-export interface TooltipProps extends ComponentProps<typeof Popup> {}
-
 export type TooltipPosition =
   | 'top left'
   | 'top center'
@@ -25,7 +23,7 @@ const cx = classNames.bind(styles);
 /**
  * @deprecated instead use components/tooltip/TooltipPopper.tsx
  */
-export const Tooltip: React.FC<TooltipProps> = ({
+export const Tooltip: React.FC<ComponentProps<typeof Popup>> = ({
   children,
   position = 'top center',
   on = 'hover',

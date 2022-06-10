@@ -11,6 +11,8 @@ import {
   projectionData,
 } from './components/graphs/linear/mocked-data';
 import { ScatterPlotGraph } from './components/graphs/scatterplot';
+import { riskReturnsData } from './components/graphs/scatterplot/mocks';
+import { ScatterPlotGraphFeature } from './feature';
 
 const AssetsPieData = [
   { name: 'US Stock', value: 0.665 },
@@ -36,7 +38,10 @@ function App() {
   return (
     <div className="App">
       <Box>
-        <ScatterPlotGraph />
+        <ScatterPlotGraphFeature />
+      </Box>
+      <Box>
+        <ScatterPlotGraph data={riskReturnsData} />
       </Box>
       <Box>
         <LineGraph
