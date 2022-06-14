@@ -23,7 +23,7 @@ import { numberWithCommas } from 'core/utils';
 import { Tooltip } from '../tooltip';
 import { useBreakpointDetector } from '../../../core/window';
 import { IconType } from './icons/GraphIcon';
-import { QuestionMark, QuestionMarkPopper } from '../../question-mark';
+import { QuestionMarkPopper } from '../../question-mark';
 import { NoDataError } from '../../no-data-error';
 import {
   ScatterPlotCustomSvgLayer,

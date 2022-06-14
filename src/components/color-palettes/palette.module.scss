@@ -1,0 +1,38 @@
+@import 'src/styles/components-settings';
+@import 'color-palettes.module';
+
+.palette {
+  &__colors-group {
+    margin-top: 24px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__title {
+    margin: 0 0 20px;
+  }
+}
+
+.color {
+  display: flex;
+  gap: 8%;
+  align-items: center;
+  height: 50px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  color: #fff;
+
+  &:not(:first-child) {
+    margin-top: 1px;
+  }
+
+  &__value {
+    overflow: hidden;
+  }
+}
+
+.color--dark-text {
+  color: $grey-900;
+}

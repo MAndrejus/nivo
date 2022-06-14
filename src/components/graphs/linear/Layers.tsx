@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { abbreviateNumber } from 'core/utils';
+import { abbreviateNumber, MOBILE_BREAKPOINT, numberWithCommas } from 'core/utils';
 import moment from 'moment';
-import { CustomLayer, CustomLayerProps } from '@nivo/line';
 import { textStyle } from './config';
-import { numberWithCommas, MOBILE_BREAKPOINT } from 'core/utils';
 import { Tooltip } from './Tooltip';
 import classNames from 'classnames/bind';
 import styles from './line-graph.module.scss';
@@ -28,7 +26,7 @@ export const ProjectionLayer = (areaData: ProjectionData) => {
   const ProjectionLayer = (layer) => {
     const areaGenerator = area<ProjectionDatum>()
       .x((d) => {
-        const fullDate = d.x! as string;
+        const fullDate = d.x as string;
         return layer.xScale(new Date(fullDate));
       })
       .y0((d) => layer.yScale(d.min))
@@ -36,7 +34,7 @@ export const ProjectionLayer = (areaData: ProjectionData) => {
       .curve(curveCardinal);
     return (
       <path
-        d={areaGenerator(data)!}
+        d={areaGenerator(data)}
         fill={color}
         style={{ pointerEvents: 'auto', cursor: 'pointer' }}
       />
@@ -175,7 +173,7 @@ export const InvestmentTarget = (target: number) => {
   return InvestmentTargetLayer;
 };
 
-export const CustomLegend = (layer: any) => {
+export const CustomLegend = (layer) => {
   const isMobileLandscape = useBreakpointDetector({ to: 'mobile-landscape' });
 
   if (layer.id === text['graph.legend.range-of-outcomes']) {
@@ -198,7 +196,7 @@ export const CustomLegend = (layer: any) => {
   );
 };
 
-export const YAxisTick = (tick: any, position: string, units: string) => {
+export const YAxisTick = (tick, position: string, units: string) => {
   const isMobileLandscape = useBreakpointDetector({ to: 'mobile-landscape' });
   const transformLeft = position === 'left' ? -55 : 30;
   return (
@@ -226,7 +224,7 @@ export const YAxisTick = (tick: any, position: string, units: string) => {
   );
 };
 
-export const XAxisTick = (tick: any, startingDate: string) => {
+export const XAxisTick = (tick, startingDate: string) => {
   const isMobileLandscape = useBreakpointDetector({ to: 'mobile-landscape' });
 
   const renderTick = (x: number, y: number, date: string) => {
@@ -253,7 +251,7 @@ export const XAxisTick = (tick: any, startingDate: string) => {
 };
 
 interface TooltipProps {
-  data: any;
+  data;
   units: '%' | '$';
   unitsPosition?: 'start' | 'end';
   dataCount?: number;
@@ -262,6 +260,7 @@ interface TooltipProps {
   withColors?: boolean;
   valueDecimals?: number;
 }
+
 export const renderTooltip = (tooltipProps: TooltipProps) => {
   const {
     data,

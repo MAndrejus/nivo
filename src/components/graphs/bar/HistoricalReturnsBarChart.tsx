@@ -1,19 +1,19 @@
 import React from 'react';
-import { ResponsiveBar } from '@nivo/bar';
+import { BarDatum, ResponsiveBar } from '@nivo/bar';
 import styles from './historical-returns-bar-chart.module.scss';
 import classNames from 'classnames/bind';
-import { CustomLegends, CustomBar, CustomAxes } from './Layers';
+import { CustomAxes, CustomBar, CustomLegends } from './Layers';
 import { useBreakpointDetector } from 'core/window';
 import {
-  NET_RETURNS_COLOR,
+  CHART_HEIGHT,
+  desktopMargins,
+  mobileMargins,
   NET_LOSSES_COLOR,
   NET_RANGE_COLOR,
+  NET_RETURNS_COLOR,
   textStyle,
-  mobileMargins,
-  desktopMargins,
-  CHART_HEIGHT,
 } from './constants';
-import { BarDatum, DataProps } from '@nivo/bar/dist/types/types';
+import { DataProps } from '@nivo/bar/dist/types/types';
 
 const cx = classNames.bind(styles);
 

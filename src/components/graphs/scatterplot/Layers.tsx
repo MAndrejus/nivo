@@ -1,4 +1,4 @@
-import { ScatterPlotCustomSvgLayer } from '@nivo/scatterplot';
+import { ScatterPlotCustomSvgLayer, ScatterPlotNodeProps } from '@nivo/scatterplot';
 import classNames from 'classnames/bind';
 import React, { MouseEvent } from 'react';
 import { text } from './text';
@@ -11,14 +11,14 @@ import { ScatterPlotMouseHandler, ScatterPlotNodeData } from '@nivo/scatterplot/
 
 const cx = classNames.bind(styles);
 
-export const YAxisLabels = (data: any) => {
+export const YAxisLabels: ScatterPlotCustomSvgLayer<DotData> = (layer) => {
   const isLargeDesktop = useBreakpointDetector({ from: 'large-desktop' });
   return isLargeDesktop ? (
     <g transform={`translate(-60 0)`}>
       <text y={20} style={tickTextStyle}>
         {text.higher}
       </text>
-      <text y={data.innerHeight - 20} style={tickTextStyle}>
+      <text y={layer.innerHeight - 20} style={tickTextStyle}>
         {text.lower}
       </text>
     </g>
@@ -52,23 +52,23 @@ export const YAxisLegend: ScatterPlotCustomSvgLayer<DotData> = ({ innerHeight })
   );
 };
 
-export const XAxisLabels = (data: any) => {
+export const XAxisLabels: ScatterPlotCustomSvgLayer<DotData> = (layer) => {
   const isLargeDesktop = useBreakpointDetector({ from: 'large-desktop' });
   return isLargeDesktop ? (
-    <g transform={`translate(${0} ${data.innerHeight + 20})`}>
+    <g transform={`translate(${0} ${layer.innerHeight + 20})`}>
       <text x={10} style={tickTextStyle}>
         {text.lower}
       </text>
-      <text x={data.innerWidth - 50} style={tickTextStyle}>
+      <text x={layer.innerWidth - 50} style={tickTextStyle}>
         {text.higher}
       </text>
     </g>
   ) : (
-    <g transform={`translate(${0} ${data.innerHeight + 20})`}>
+    <g transform={`translate(${0} ${layer.innerHeight + 20})`}>
       <text x={-20} style={tickTextStyle}>
         {text.lower}
       </text>
-      <text x={data.innerWidth - 50} style={tickTextStyle}>
+      <text x={layer.innerWidth - 50} style={tickTextStyle}>
         {text.higher}
       </text>
     </g>
@@ -85,9 +85,8 @@ export const YAxisLine: ScatterPlotCustomSvgLayer<DotData> = ({ innerHeight }) =
   );
 };
 
-export const XAxisLine =
-  (axisColors?: string[]): ScatterPlotCustomSvgLayer<DotData> =>
-  ({ innerWidth, innerHeight }) => {
+export const XAxisLine = (axisColors?: string[]): ScatterPlotCustomSvgLayer<DotData> => {
+  const XAxisLineLayer = ({ innerWidth, innerHeight }) => {
     let lineColor: string;
     let defs: JSX.Element | undefined;
     if (axisColors === undefined || axisColors.length === 0) {
@@ -146,6 +145,8 @@ export const XAxisLine =
       </g>
     );
   };
+  return XAxisLineLayer;
+};
 
 export const QuadrantsAxis: ScatterPlotCustomSvgLayer<DotData> = ({ innerWidth, innerHeight }) => {
   return (
@@ -171,7 +172,7 @@ export const QuadrantsAxis: ScatterPlotCustomSvgLayer<DotData> = ({ innerWidth, 
 };
 
 export const NodeRenderer = (
-  dot: any,
+  dot: ScatterPlotNodeProps<DotData>,
   maxXValue: number | undefined,
   isMobile: boolean,
   showNodeLabel: boolean,

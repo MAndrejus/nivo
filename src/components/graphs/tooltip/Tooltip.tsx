@@ -35,9 +35,9 @@ export const Tooltip = (props: Props) => {
 
   const list = data.map((item, i) => {
     return (
-      <p className={cx('item', item.active && 'item--active', item.bold && 'item--bold')} key={i}>
+      <div className={cx('item', item.active && 'item--active', item.bold && 'item--bold')} key={i}>
         {item.key} <span>{item.value}</span>
-      </p>
+      </div>
     );
   });
   return (

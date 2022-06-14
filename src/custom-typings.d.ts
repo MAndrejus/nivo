@@ -14,6 +14,7 @@ import {
   ModernMotionProps,
 } from '@nivo/core';
 import { FunctionComponent } from 'react';
+import { ComputedDatum, ComputedSerie, LineSvgProps, Point } from '@nivo/line';
 
 declare module '@nivo/scatterplot' {
   export interface ScatterPlotLayerProps<RawDatum extends ScatterPlotDatum> {

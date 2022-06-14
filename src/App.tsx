@@ -13,6 +13,8 @@ import {
 import { ScatterPlotGraph } from './components/graphs/scatterplot';
 import { riskReturnsData } from './components/graphs/scatterplot/mocks';
 import { ScatterPlotGraphFeature } from './feature';
+import { ColorPalettes } from './components/color-palettes';
+import { ColorGuide } from './components/color-guide/ColorGuide';
 
 const AssetsPieData = [
   { name: 'US Stock', value: 0.665 },
@@ -37,6 +39,8 @@ const HistoricalReturnsBarData = [
 function App() {
   return (
     <div className="App">
+      <ColorGuide />
+      <ColorPalettes />
       <Box>
         <ScatterPlotGraphFeature />
       </Box>
