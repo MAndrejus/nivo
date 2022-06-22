@@ -1,6 +1,8 @@
 // these must not contain any css output
+@import 'base/color-palette';
 @import 'base/colors';
 @import 'base/variables';
 @import 'base/functions';
 @import 'base/mixins';
 @import 'base/mixins-breakpoints';
+@import 'base/typography';

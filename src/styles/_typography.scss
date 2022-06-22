@@ -1,0 +1,48 @@
+.headline-xxl {
+  @include headline-xxl;
+}
+.headline-xl {
+  @include headline-xl;
+}
+.headline-lg {
+  @include headline-lg;
+}
+.headline-md {
+  @include headline-md;
+}
+.headline-sm {
+  @include headline-sm;
+}
+.headline-xs {
+  @include headline-xs;
+}
+
+.sub-headline-xxl {
+  @include sub-headline-xxl;
+}
+.sub-headline-xl {
+  @include sub-headline-xl;
+}
+.sub-headline-lg {
+  @include sub-headline-lg;
+}
+
+.text-xl {
+  @include text-xl;
+}
+.text-lg {
+  @include text-lg;
+}
+.text-md {
+  @include text-md;
+}
+.text-sm {
+  @include text-sm;
+}
+.text-xs {
+  @include text-xs;
+}
+
+.text-link {
+  @include text-link;
+}

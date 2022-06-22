@@ -1,0 +1,161 @@
+// Color palettes
+
+// Grey
+$grey-100: #f6f6f6; // = page background
+$grey-200: #d8d8d8;
+$grey-300: #b1b1b1;
+$grey-400: #979797;
+$grey-500: #808182; // - disabled, neutral
+$grey-600: #565a5c;
+$grey-700: #565a5c;
+$grey-800: #3d4042;
+$grey-900: #3a3a3a; // - primary text
+
+$grey-050: #eaeaea; // - disabled background
+$grey-550: #767676; // - ADA Compliant Placeholder Text
+
+// Blue
+$blue-100: #cbeafa;
+$blue-200: #86d2f9;
+$blue-300: #4ab0e5;
+$blue-400: #258ec6; // - flash message
+$blue-500: #0a699b;
+$blue-600: #165f86;
+$blue-700: #104866; // - primary blue
+$blue-800: #0b3a54;
+$blue-900: #022e3c; // - popup heading
+
+$blue-050: #e5ebf1; // - hover state
+$blue-550: #779fc2; // - selected border
+
+// Aqua
+$aqua-100: #e1fcff;
+$aqua-200: #a2eaf4;
+$aqua-300: #68d2d8;
+$aqua-400: #36b4bc;
+$aqua-500: #00a00a; // - active and hover for grey and white elements
+$aqua-600: #088b94;
+$aqua-700: #0d818a; // - chart aqua
+$aqua-800: #05676e;
+$aqua-900: #085459;
+
+// Teal
+$teal-100: #e9fff9;
+$teal-200: #d0f4eb;
+$teal-300: #b5e3d8;
+$teal-400: #8ad2c6;
+$teal-500: #64c8af;
+$teal-600: #49b69b;
+$teal-700: #37a085; // - chart teal
+$teal-800: #1f8a6f;
+$teal-900: #12745b;
+
+// Dark Green
+$dark-green-100: #e2fce3;
+$dark-green-200: #b8e1ba;
+$dark-green-300: #8ec791;
+$dark-green-400: #64ac68;
+$dark-green-500: #3a913f;
+$dark-green-600: #2d8031;
+$dark-green-700: #206f23; // - chart dark green
+$dark-green-800: #125d15;
+$dark-green-900: #054c07;
+
+// Green
+$green-100: #e6f7c4; // - success background
+$green-200: #c6e396;
+$green-300: #a5cf68;
+$green-400: #85bb39;
+$green-500: #64a70b; // - primary green
+$green-600: #5d970c;
+$green-700: #56870e; // - chart green
+$green-800: #4f760f;
+$green-900: #486610;
+
+// Light Green
+$light-green-100: #fcfcc5;
+$light-green-200: #eaec94;
+$light-green-300: #d9dd63;
+$light-green-400: #c7cd31;
+$light-green-500: #b5bd00;
+$light-green-600: #a4aa03;
+$light-green-700: #949807;
+$light-green-800: #83850a;
+$light-green-900: #72720d;
+
+// Yellow
+$yellow-100: #fff4c0; // - warning background
+$yellow-200: #ffdf84;
+$yellow-300: #fcd76e;
+$yellow-400: #fdcf4b;
+$yellow-500: #fabe0f; // - warning, tooltip
+$yellow-600: #e5ad08;
+$yellow-700: #d09d07;
+$yellow-800: #b98a00;
+$yellow-900: #a0761c;
+
+// Purple
+$purple-100: #ffeefd;
+$purple-200: #e3c1de;
+$purple-300: #c489bb;
+$purple-400: #ac5d9f;
+$purple-500: #8e3a80;
+$purple-600: #813275;
+$purple-700: #752a6a;
+$purple-800: #68215e;
+$purple-900: #5b1953;
+
+// Red
+$red-100: #ffe8e6; // - error background
+$red-200: #f7c2bb;
+$red-300: #f57d69;
+$red-400: #f5634d;
+$red-500: #e04e39; // - error border
+$red-600: #d04532; // - negative/error text
+$red-700: #bf3b2a;
+$red-800: #aa2d28;
+$red-900: #941a0d;
+
+// Orange
+$orange-100: #ffeede;
+$orange-200: #f9cfa7;
+$orange-300: #fba755;
+$orange-400: #fa9619;
+$orange-500: #e97c05;
+$orange-600: #d77200;
+$orange-700: #bf5e00;
+$orange-800: #ac5300; // - warning Text
+$orange-900: #994900;
+
+// NT Green
+$nt-green-100: #dfe8e5;
+$nt-green-200: #bdd0c9;
+$nt-green-300: #9ab8ae;
+$nt-green-400: #78a093;
+$nt-green-500: #568777;
+$nt-green-600: #336f5c;
+$nt-green-700: #115740; // - brand green
+$nt-green-800: #0d4936;
+$nt-green-900: #093b2b;
+
+// NT Gold
+$nt-gold-100: #f2ebd7;
+$nt-gold-200: #e1d4ae;
+$nt-gold-300: #d0be85;
+$nt-gold-400: #bfa85b;
+$nt-gold-500: #ae9132; // - brand gold
+$nt-gold-600: #a8872a;
+$nt-gold-700: #a27d23;
+$nt-gold-800: #9c731c;
+$nt-gold-900: #966914;
+
+// NT Warm Grey
+$nt-warm-grey-100: #f7f6f3;
+$nt-warm-grey-200: #efede7;
+$nt-warm-grey-300: #e7e4dc;
+$nt-warm-grey-400: #dedbd0;
+$nt-warm-grey-500: #d6d2c4;
+$nt-warm-grey-600: #cbc6b3;
+$nt-warm-grey-700: #c0b9a2;
+$nt-warm-grey-800: #b5ad91;
+$nt-warm-grey-900: #aaa080;

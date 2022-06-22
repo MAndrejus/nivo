@@ -15,6 +15,8 @@ import { riskReturnsData } from './components/graphs/scatterplot/mocks';
 import { ScatterPlotGraphFeature } from './feature';
 import { ColorPalettes } from './components/color-palettes';
 import { ColorGuide } from './components/color-guide/ColorGuide';
+import { TypographyGuideline } from './components/typography/TypographyGuideline';
+import { typographyForDesktop, typographyForMobile } from './components/typography/mocks';
 
 const AssetsPieData = [
   { name: 'US Stock', value: 0.665 },
@@ -39,6 +41,15 @@ const HistoricalReturnsBarData = [
 function App() {
   return (
     <div className="App">
+      <TypographyGuideline
+        typographiesUsage={typographyForDesktop}
+        title={'Desktop Typography Usage'}
+      />
+      <TypographyGuideline
+        typographiesUsage={typographyForMobile}
+        title={'Mobile Typography Usage'}
+        type={'mobile'}
+      />
       <ColorGuide />
       <ColorPalettes />
       <Box>

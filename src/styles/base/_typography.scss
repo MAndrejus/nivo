@@ -1,0 +1,128 @@
+@mixin headline-xxl() {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  @include breakpoint-from('tablet') {
+    font-size: 50px;
+  }
+}
+@mixin headline-xl() {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  @include breakpoint-from('tablet') {
+    font-size: 30px;
+  }
+}
+@mixin headline-lg() {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.2;
+
+  @include breakpoint-from('tablet') {
+    font-size: 24px;
+  }
+}
+@mixin headline-md() {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+
+  @include breakpoint-from('tablet') {
+    font-size: 20px;
+  }
+}
+@mixin headline-sm() {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+
+  @include breakpoint-from('tablet') {
+    font-size: 18px;
+  }
+}
+@mixin headline-xs() {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+
+  @include breakpoint-from('tablet') {
+    font-size: 16px;
+  }
+}
+
+@mixin sub-headline-xxl() {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  @include breakpoint-from('tablet') {
+    font-size: 24px;
+  }
+}
+@mixin sub-headline-xl() {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  @include breakpoint-from('tablet') {
+    font-size: 20px;
+  }
+}
+@mixin sub-headline-lg() {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+@mixin text-xl() {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+
+  @include breakpoint-from('tablet') {
+    font-size: 20px;
+  }
+}
+@mixin text-lg() {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+
+  @include breakpoint-from('tablet') {
+    font-size: 18px;
+  }
+}
+@mixin text-md() {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+@mixin text-sm() {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+@mixin text-xs() {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+@mixin text-link() {
+  color: $blue-500;
+  cursor: pointer;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+}

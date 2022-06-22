@@ -1,0 +1,94 @@
+.typography {
+  text-align: left;
+}
+
+.table {
+  width: 100%;
+  border: 0 none;
+  border-spacing: 0;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  table-layout: fixed;
+
+  tr {
+  }
+
+  th,
+  td {
+    padding: 10px;
+    border: 1px solid black;
+  }
+
+  &__name {
+    width: 140px;
+  }
+  &__size {
+    width: 100px;
+  }
+  &__styling {
+    width: 140px;
+  }
+  &__availability {
+    width: 180px;
+  }
+  &__use-case {
+    width: 300px;
+  }
+}
+
+.table--mobile {
+  h1,
+  .headline-xxl--mobile {
+    font-size: 36px;
+  }
+  h2,
+  .headline-xl--mobile {
+    font-size: 26px;
+  }
+  h3,
+  .headline-lg--mobile {
+    font-size: 22px;
+  }
+  h4,
+  .headline-md--mobile {
+    font-size: 18px;
+  }
+  h5,
+  .headline-sm--mobile {
+    font-size: 16px;
+  }
+  h6,
+  .headline-xs--mobile {
+    font-size: 14px;
+  }
+
+  .sub-headline-xxl--mobile {
+    font-size: 22px;
+  }
+  .sub-headline-xl--mobile {
+    font-size: 18px;
+  }
+  .sub-headline-lg--mobile {
+    font-size: 16px;
+  }
+
+  .text-xl--mobile {
+    font-size: 18px;
+  }
+  .text-lg--mobile {
+    font-size: 16px;
+  }
+  .text-md--mobile {
+    font-size: 16px;
+  }
+  .text-sm--mobile {
+    font-size: 14px;
+  }
+  .text-xs--mobile {
+    font-size: 12px;
+  }
+}
+
+.pre-line {
+  white-space: pre-line;
+}
