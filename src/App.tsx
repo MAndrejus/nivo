@@ -17,6 +17,7 @@ import { ColorPalettes } from './components/color-palettes';
 import { ColorGuide } from './components/color-guide/ColorGuide';
 import { TypographyGuideline } from './components/typography/TypographyGuideline';
 import { typographyForDesktop, typographyForMobile } from './components/typography/mocks';
+import { Buttons } from './feature/buttons';
 
 const AssetsPieData = [
   { name: 'US Stock', value: 0.665 },
@@ -41,6 +42,7 @@ const HistoricalReturnsBarData = [
 function App() {
   return (
     <div className="App">
+      <Buttons />
       <TypographyGuideline
         typographiesUsage={typographyForDesktop}
         title={'Desktop Typography Usage'}

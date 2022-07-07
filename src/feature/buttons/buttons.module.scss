@@ -1,0 +1,51 @@
+.buttons-table {
+  border: 0 none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  box-sizing: border-box;
+  width: 100%;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  tr {
+    &:nth-child(odd) {
+      border-bottom: 1px solid black;
+    }
+  }
+
+  td,
+  th {
+    border: 0 none;
+    padding: 5px;
+
+    &:first-child {
+      font-weight: bold;
+      text-align: left;
+    }
+  }
+
+  tbody {
+    td {
+      padding-bottom: 20px;
+      padding-top: 20px;
+    }
+
+    .use-case td {
+      padding-bottom: 0;
+      padding-top: 20px;
+    }
+  }
+}
+
+.w110 {
+  width: 80px;
+}
+
+.mw900 {
+  //margin: 0 auto;
+  //max-width: 900px;
+  font-weight: 700;
+  text-align: left;
+}
