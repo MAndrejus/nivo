@@ -1,0 +1,411 @@
+/*
+ `$block` in mixins also serves secondary purpose - it indicates that code is for react components (and not for legacy buttons)
+*/
+
+$_btn-font-size: 14px;
+$_btn-weight: 500;
+$_btn-line-height: 24px;
+$_btn-border-radius: 8px;
+
+@mixin btn {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: $_btn-font-size;
+  font-weight: $_btn-weight;
+  line-height: $_btn-line-height;
+  margin: 0;
+  overflow: hidden;
+  text-decoration: none;
+  width: auto;
+}
+
+@mixin btn-disabled {
+  $_disabled-color: $color-grey-2;
+  $_color: $color-white;
+
+  background: $_disabled-color;
+  border-color: $_disabled-color;
+  color: $_color;
+  cursor: default;
+}
+
+@mixin btn-common($block: null) {
+  $_border-width: 1px;
+  $_vertical-padding: 12px - $_border-width;
+  $_horizontal-padding: 24px - $_border-width;
+  $_border-radius: $_btn-border-radius;
+
+  @include remove-focus-outline;
+
+  border: $_border-width solid transparent;
+  border-radius: $_border-radius;
+  text-align: center;
+  transition: color $transition-duration-default $transition-timing-function-default,
+    background $transition-duration-default $transition-timing-function-default,
+    border $transition-duration-default $transition-timing-function-default;
+  padding: $_vertical-padding $_horizontal-padding;
+
+  @if $block {
+    .icon {
+      transition: fill $transition-duration-default $transition-timing-function-default;
+    }
+  }
+}
+
+@mixin btn-primary($block: null) {
+  $_body-color: $blue-700;
+  $_body-hover-color: $blue-500;
+  $_color: $grey-100;
+  $_color-hover: $grey-100;
+  $_color-disabled: $grey-100;
+  $_border-color: transparent;
+  $_border-color-hover: transparent;
+
+  background: $_body-color;
+  border-color: $_border-color;
+  color: $_color;
+
+  &:hover,
+  &:focus {
+    background: $_body-hover-color;
+    border-color: $_border-color-hover;
+    color: $_color-hover;
+
+    @if $block {
+      .icon {
+        fill: $_color-hover;
+      }
+    }
+  }
+
+  &[disabled] {
+    @include btn-disabled;
+  }
+
+  @if $block {
+    .icon {
+      fill: $_color;
+    }
+
+    &#{$block}--disabled {
+      @include btn-disabled;
+
+      .icon {
+        fill: $_color-disabled;
+      }
+    }
+  }
+}
+
+@mixin btn-secondary($block: null) {
+  $_body-color: $color-white;
+  $_body-hover-color: $blue-500;
+  $_border-color: $blue-500;
+  $_border-hover-color: transparent;
+  $_color: $blue-500;
+  $_color-hover: $grey-100;
+  $_color-disabled: $grey-100;
+
+  background: $_body-color;
+  border-color: $_border-color;
+  color: $_color;
+
+  &:hover,
+  &:focus {
+    background: $_body-hover-color;
+    border-color: $_border-hover-color;
+    color: $_color-hover;
+
+    @if $block {
+      .icon {
+        fill: $_color-hover;
+      }
+    }
+  }
+
+  &[disabled] {
+    @include btn-disabled;
+  }
+
+  @if $block {
+    .icon {
+      fill: $_color;
+    }
+
+    &#{$block}--disabled {
+      @include btn-disabled;
+
+      .icon {
+        fill: $_color-disabled;
+      }
+    }
+  }
+}
+
+@mixin btn-tertiary($block: null) {
+  $_body-color: $color-white;
+  $_body-hover-color: $blue-900;
+  $_border-color: $blue-900;
+  $_border-hover-color: transparent;
+  $_color: $blue-900;
+  $_color-hover: $grey-100;
+  $_color-disabled: $grey-100;
+
+  background: $_body-color;
+  border-color: $_border-color;
+  color: $_color;
+
+  &:hover,
+  &:focus {
+    background: $_body-hover-color;
+    border-color: $_border-hover-color;
+    color: $_color-hover;
+
+    @if $block {
+      .icon {
+        fill: $_color-hover;
+      }
+    }
+  }
+
+  &[disabled] {
+    @include btn-disabled;
+  }
+
+  @if $block {
+    .icon {
+      fill: $_color;
+    }
+
+    &#{$block}--disabled {
+      @include btn-disabled;
+
+      .icon {
+        fill: $_color-disabled;
+      }
+    }
+  }
+}
+
+@mixin btn-danger($block: null) {
+  $_body-color: $red-600;
+  $_body-hover-color: $red-800;
+  $_border-color: transparent;
+  $_border-hover-color: transparent;
+  $_color: $grey-100;
+  $_color-hover: $grey-100;
+  $_color-disabled: $grey-100;
+
+  background: $_body-color;
+  border-color: $_border-color;
+  color: $_color;
+
+  &:hover,
+  &:focus {
+    background: $_body-hover-color;
+    border-color: $_border-hover-color;
+    color: $_color-hover;
+
+    @if $block {
+      .icon {
+        fill: $_color-hover;
+      }
+    }
+  }
+
+  &[disabled] {
+    @include btn-disabled;
+  }
+
+  @if $block {
+    .icon {
+      fill: $_color;
+    }
+
+    &#{$block}--disabled {
+      @include btn-disabled;
+
+      .icon {
+        fill: $_color-disabled;
+      }
+    }
+  }
+}
+
+@mixin btn-common-action($block: null) {
+  $_vertical-padding: 12px;
+  $_horizontal-padding: 24px;
+  $_border-radius: $_btn-border-radius;
+
+  @include remove-focus-outline;
+
+  border: 0 none;
+  border-radius: $_border-radius;
+  text-align: center;
+  transition: color $transition-duration-default $transition-timing-function-default,
+    background $transition-duration-default $transition-timing-function-default,
+    border $transition-duration-default $transition-timing-function-default;
+  padding: $_vertical-padding $_horizontal-padding;
+
+  @if $block {
+    .icon {
+      transition: fill $transition-duration-default $transition-timing-function-default;
+    }
+  }
+}
+
+@mixin btn-action-primary($block: null) {
+  $_body-color: $color-white;
+  $_body-hover-color: $blue-500;
+  $_color: $blue-500;
+  $_color-hover: $grey-100;
+  $_color-disabled: $grey-100;
+
+  background: $_body-color;
+  color: $_color;
+
+  &:hover,
+  &:focus {
+    background: $_body-hover-color;
+    color: $_color-hover;
+
+    @if $block {
+      .icon {
+        fill: $_color-hover;
+      }
+    }
+  }
+
+  &[disabled] {
+    @include btn-disabled;
+  }
+
+  @if $block {
+    .icon {
+      fill: $_color;
+    }
+
+    &#{$block}--disabled {
+      @include btn-disabled;
+
+      .icon {
+        fill: $_color-disabled;
+      }
+    }
+  }
+}
+
+@mixin btn-action-danger($block: null) {
+  $_body-color: $color-white;
+  $_body-hover-color: $red-700;
+  $_color: $red-700;
+  $_color-hover: $grey-100;
+  $_color-disabled: $grey-100;
+
+  background: $_body-color;
+  color: $_color;
+
+  &:hover,
+  &:focus {
+    background: $_body-hover-color;
+    color: $_color-hover;
+
+    @if $block {
+      .icon {
+        fill: $_color-hover;
+      }
+    }
+  }
+
+  &[disabled] {
+    @include btn-disabled;
+  }
+
+  @if $block {
+    .icon {
+      fill: $_color;
+    }
+
+    &#{$block}--disabled {
+      @include btn-disabled;
+
+      .icon {
+        fill: $_color-disabled;
+      }
+    }
+  }
+}
+
+@mixin btn-common-link {
+  @include remove-focus-outline;
+
+  border: 0 none;
+  text-align: center;
+  text-decoration: none;
+  padding: 0;
+
+  &:hover,
+  &:focus {
+    .content {
+      text-decoration: underline;
+    }
+  }
+}
+
+@mixin btn-link-primary($block: null) {
+  $_color: $blue-500;
+  $_color-disabled: $grey-600;
+
+  background: transparent;
+  color: $_color;
+
+  &[disabled] {
+    cursor: default;
+    color: $_color-disabled;
+
+    .content {
+      text-decoration: none;
+    }
+  }
+
+  @if $block {
+    .icon {
+      fill: $_color;
+    }
+
+    &#{$block}--disabled {
+      cursor: default;
+      color: $_color-disabled;
+
+      .icon {
+        fill: $_color-disabled;
+      }
+
+      .content {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+// this can be used to ensure proper clickable area of icon buttons (or other small clickable elements) to improve UX on mobile devices
+@mixin btn-set-clickable-area($size: 24px, $set-simple-positioning: true) {
+  @if $set-simple-positioning {
+    position: relative;
+    z-index: $z-default;
+  }
+
+  overflow: visible;
+
+  &::after {
+    @include position-translate-center;
+
+    background: transparent;
+    content: '';
+    height: $size;
+    width: $size;
+    z-index: $z-below-content;
+  }
+}

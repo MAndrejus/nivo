@@ -1,0 +1,76 @@
+@import 'src/styles/components-settings';
+@import 'button-mixin';
+
+.button {
+  $_this: &;
+
+  @include btn;
+
+  &__body {
+    align-items: center;
+    display: flex;
+    gap: 9px;
+    justify-content: center;
+  }
+
+  &--primary {
+    @include btn-common($_this);
+    @include btn-primary($_this);
+  }
+
+  &--secondary {
+    @include btn-common($_this);
+    @include btn-secondary($_this);
+  }
+
+  &--tertiary {
+    @include btn-common($_this);
+    @include btn-tertiary($_this);
+  }
+
+  &--danger {
+    @include btn-common($_this);
+    @include btn-danger($_this);
+  }
+
+  &--action-primary {
+    @include btn-common-action($_this);
+    @include btn-action-primary($_this);
+  }
+
+  &--action-danger {
+    @include btn-common-action($_this);
+    @include btn-action-danger($_this);
+  }
+  &--link-primary {
+    @include btn-common-link;
+    @include btn-link-primary($_this);
+  }
+
+  &--primary,
+  &--secondary,
+  &--tertiary,
+  &--danger {
+    &#{$_this}--icon {
+      padding: 3px;
+    }
+  }
+
+  &--action-primary,
+  &--action-danger,
+  &--link-primary {
+    &#{$_this}--icon {
+      padding: 4px;
+    }
+  }
+}
+
+.icon {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  > svg {
+    display: block;
+  }
+}
