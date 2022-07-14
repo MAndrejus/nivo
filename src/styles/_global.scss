@@ -2,3 +2,9 @@ body {
   font-family: $font-family;
   font-size: 12px;
 }
+
+.layout {
+  max-width: 1500px;
+  margin: 32px auto 0;
+  padding: 0 16px;
+}

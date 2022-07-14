@@ -1,0 +1,33 @@
+@import 'src/styles/components-settings';
+
+$card-border: 1px;
+$card-shadow: 0 0 24px rgba(#dedede, 0.5);
+
+.card {
+  background-color: $color-white;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  box-shadow: $card-shadow;
+  margin-bottom: 32px;
+  padding: 16px - $card-border;
+
+  @include breakpoint-from('tablet') {
+    padding: 32px - $card-border;
+  }
+}
+
+.card--transparent {
+  background-color: transparent;
+  border-color: $grey-400;
+  box-shadow: none;
+}
+
+.card--clickable {
+  border-color: $blue-050;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $blue-050;
+    border-color: $blue-550;
+  }
+}
